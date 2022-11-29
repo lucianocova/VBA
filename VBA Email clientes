@@ -1,0 +1,27 @@
+Sub enviar_email()
+
+Set objeto_outlook = CreateObject("Outlook.Application")
+
+For linha = 2 To Range("A1").End(xlDown).Row
+        
+    Set Email = objeto_outlook.createitem(0)
+    
+    Email.display
+    
+    Email.To = Cells(linha, 1).Value
+    
+    Email.bcc = "email@email.com"
+    
+    Email.Subject = "Atualização de Faturamento"
+    
+    Email.Body = "Prezado Cliente" & Chr(10) & Chr(10) & "Para manutenção dos negócios é necessária a atualização cadastral periódica de 
+    sua empresa junto ao Banco do Brasil, conforme Circular Bacen nº003461 Art. 2º." & Chr(10) & "Pedimos que nos encaminhe a relação de 
+    faturamento dos últimos 12 meses com a assinatura do representante legal da empresa + contador (caso a empresa seja optante pelo Simples Nacional 
+    a assinatura do contador é opcional)." & Chr(10) & "Ficamos à disposição em caso de dúvidas." & Chr(10) & Chr(10) & "Atenciosamente" & Chr(10) & Chr(10) 
+    & "NOME COMPLETO DO FUNCI" & Chr(10) & "CARGO"
+    
+    Email.send
+
+Next
+
+End Sub
